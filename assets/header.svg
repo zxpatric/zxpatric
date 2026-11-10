@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#05070f"/>
+      <stop offset="0.55" stop-color="#0b1026"/>
+      <stop offset="1" stop-color="#140a2a"/>
+    </linearGradient>
+    <linearGradient id="title" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00e5ff"/>
+      <stop offset="0.5" stop-color="#7c4dff"/>
+      <stop offset="1" stop-color="#ff2bd6"/>
+    </linearGradient>
+    <linearGradient id="scan" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#00e5ff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#00e5ff" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#00e5ff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1b2347"/>
+      <stop offset="0.5" stop-color="#2c3a73"/>
+      <stop offset="1" stop-color="#1b2347"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#00e5ff" stroke-opacity="0.07" stroke-width="1"/>
+    </pattern>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="frame"><rect x="0" y="0" width="1200" height="340" rx="18"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="340" fill="url(#bg)"/>
+    <rect width="1200" height="340" fill="url(#grid)"/>
+
+    <!-- perspective floor -->
+    <g stroke="#7c4dff" stroke-opacity="0.18" stroke-width="1">
+      <line x1="600" y1="300" x2="-200" y2="340"/>
+      <line x1="600" y1="300" x2="200" y2="340"/>
+      <line x1="600" y1="300" x2="600" y2="340"/>
+      <line x1="600" y1="300" x2="1000" y2="340"/>
+      <line x1="600" y1="300" x2="1400" y2="340"/>
+      <line x1="0" y1="310" x2="1200" y2="310"/>
+      <line x1="0" y1="322" x2="1200" y2="322"/>
+    </g>
+
+    <!-- circuit traces -->
+    <g fill="none" stroke="#00e5ff" stroke-opacity="0.35" stroke-width="1.5">
+      <path d="M0 60 H120 L150 90 H330"/>
+      <path d="M0 280 H70 L100 250 H260"/>
+      <path d="M1200 40 H1110 L1080 70 H990"/>
+    </g>
+    <g fill="#00e5ff">
+      <circle cx="330" cy="90" r="3.5"/>
+      <circle cx="260" cy="250" r="3.5"/>
+      <circle cx="990" cy="70" r="3.5"/>
+    </g>
+    <!-- data packets travelling along traces -->
+    <circle r="3" fill="#ff2bd6" filter="url(#softglow)">
+      <animateMotion dur="4s" repeatCount="indefinite" path="M0 60 H120 L150 90 H330"/>
+    </circle>
+    <circle r="3" fill="#39ff88" filter="url(#softglow)">
+      <animateMotion dur="5s" begin="1s" repeatCount="indefinite" path="M0 280 H70 L100 250 H260"/>
+    </circle>
+
+    <!-- ===== Title block ===== -->
+    <text x="70" y="150" font-family="'Segoe UI', Verdana, Arial, sans-serif" font-size="96" font-weight="800" letter-spacing="14" fill="url(#title)" filter="url(#glow)">PATRICK</text>
+    <text x="74" y="192" font-family="'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', monospace" font-size="22" letter-spacing="5" fill="#cfe9ff">ENGINEERING MANAGER <tspan fill="#ff2bd6">//</tspan> ROBOTICS</text>
+
+    <g font-family="'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', monospace" font-size="16">
+      <text x="74" y="236" fill="#39ff88">patrick@robotics<tspan fill="#8892b0">:</tspan><tspan fill="#00e5ff">~/ws</tspan><tspan fill="#8892b0">$</tspan> <tspan fill="#cfe9ff">ros2 launch perception_planning_control.py</tspan></text>
+      <text x="74" y="262" fill="#8892b0">[INFO] <tspan fill="#cfe9ff">vision</tspan> · <tspan fill="#cfe9ff">ml</tspan> · <tspan fill="#cfe9ff">motion</tspan> · <tspan fill="#cfe9ff">test</tspan>  nodes online<tspan fill="#00e5ff">  ▮</tspan>
+        <animate attributeName="opacity" values="1;1;0.35;1" dur="1.2s" repeatCount="indefinite"/>
+      </text>
+    </g>
+
+    <!-- ===== Robotic arm ===== -->
+    <!-- HUD ring -->
+    <g transform="translate(960 190)" fill="none" stroke="#00e5ff">
+      <circle r="138" stroke-opacity="0.12" stroke-width="1"/>
+      <circle r="118" stroke-opacity="0.35" stroke-width="1.5" stroke-dasharray="4 10">
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="30s" repeatCount="indefinite"/>
+      </circle>
+      <path d="M-138 0 A138 138 0 0 1 -97.6 -97.6" stroke="#ff2bd6" stroke-width="3" stroke-opacity="0.8">
+        <animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="12s" repeatCount="indefinite"/>
+      </path>
+    </g>
+
+    <!-- base -->
+    <rect x="905" y="290" width="110" height="14" rx="4" fill="#1b2347" stroke="#00e5ff" stroke-opacity="0.6"/>
+    <path d="M925 290 L935 262 H985 L995 290 Z" fill="url(#metal)" stroke="#00e5ff" stroke-opacity="0.7"/>
+
+    <!-- shoulder joint (rotates whole arm) -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" values="-18 960 255; 14 960 255; -18 960 255" keyTimes="0;0.5;1" dur="7s" calcMode="spline" keySplines="0.45 0 0.55 1; 0.45 0 0.55 1" repeatCount="indefinite"/>
+      <!-- upper arm -->
+      <rect x="948" y="150" width="24" height="108" rx="10" fill="url(#metal)" stroke="#00e5ff" stroke-width="1.5"/>
+      <line x1="960" y1="165" x2="960" y2="245" stroke="#00e5ff" stroke-opacity="0.5" stroke-dasharray="3 5"/>
+      <circle cx="960" cy="255" r="15" fill="#0b1026" stroke="#00e5ff" stroke-width="2"/>
+      <circle cx="960" cy="255" r="5" fill="#ff2bd6" filter="url(#softglow)"/>
+
+      <!-- elbow joint -->
+      <g>
+        <animateTransform attributeName="transform" type="rotate" values="20 960 150; -25 960 150; 20 960 150" keyTimes="0;0.5;1" dur="7s" calcMode="spline" keySplines="0.45 0 0.55 1; 0.45 0 0.55 1" repeatCount="indefinite"/>
+        <rect x="960" y="140" width="98" height="20" rx="9" fill="url(#metal)" stroke="#7c4dff" stroke-width="1.5"/>
+        <line x1="975" y1="150" x2="1045" y2="150" stroke="#7c4dff" stroke-opacity="0.6" stroke-dasharray="3 5"/>
+        <circle cx="960" cy="150" r="13" fill="#0b1026" stroke="#7c4dff" stroke-width="2"/>
+        <circle cx="960" cy="150" r="4.5" fill="#00e5ff" filter="url(#softglow)"/>
+
+        <!-- wrist + gripper -->
+        <g>
+          <animateTransform attributeName="transform" type="rotate" values="-10 1058 150; 25 1058 150; -10 1058 150" keyTimes="0;0.5;1" dur="7s" calcMode="spline" keySplines="0.45 0 0.55 1; 0.45 0 0.55 1" repeatCount="indefinite"/>
+          <circle cx="1058" cy="150" r="10" fill="#0b1026" stroke="#ff2bd6" stroke-width="2"/>
+          <rect x="1064" y="142" width="16" height="16" rx="3" fill="#1b2347" stroke="#ff2bd6" stroke-width="1.5"/>
+          <path d="M1080 143 L1098 136 L1100 141 L1086 147" fill="#2c3a73" stroke="#ff2bd6" stroke-width="1.5">
+            <animateTransform attributeName="transform" type="rotate" values="0 1080 145; -12 1080 145; 0 1080 145" dur="3.5s" repeatCount="indefinite"/>
+          </path>
+          <path d="M1080 157 L1098 164 L1100 159 L1086 153" fill="#2c3a73" stroke="#ff2bd6" stroke-width="1.5">
+            <animateTransform attributeName="transform" type="rotate" values="0 1080 155; 12 1080 155; 0 1080 155" dur="3.5s" repeatCount="indefinite"/>
+          </path>
+          <!-- laser -->
+          <line x1="1100" y1="150" x2="1150" y2="150" stroke="#ff2bd6" stroke-width="1.5" stroke-opacity="0.7" filter="url(#softglow)">
+            <animate attributeName="stroke-opacity" values="0.9;0.15;0.9" dur="1.4s" repeatCount="indefinite"/>
+          </line>
+        </g>
+      </g>
+    </g>
+
+    <!-- CV detection box -->
+    <g font-family="'JetBrains Mono', Consolas, monospace" font-size="12">
+      <rect x="1100" y="248" width="40" height="40" rx="4" fill="#39ff88" fill-opacity="0.15" stroke="#39ff88" stroke-width="1.5"/>
+      <g fill="none" stroke="#39ff88" stroke-width="2">
+        <path d="M1088 252 V240 H1100"/>
+        <path d="M1140 240 H1152 V252"/>
+        <path d="M1088 284 V296 H1100"/>
+        <path d="M1140 296 H1152 V284"/>
+        <animate attributeName="stroke-opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+      </g>
+      <text x="1088" y="232" fill="#39ff88">obj 0.98</text>
+    </g>
+
+    <!-- telemetry -->
+    <g font-family="'JetBrains Mono', Consolas, monospace" font-size="11" fill="#8892b0">
+      <text x="790" y="60">J1 ▸ <tspan fill="#00e5ff">shoulder</tspan></text>
+      <text x="790" y="76">J2 ▸ <tspan fill="#7c4dff">elbow</tspan></text>
+      <text x="790" y="92">J3 ▸ <tspan fill="#ff2bd6">wrist</tspan></text>
+      <text x="790" y="108">STATUS ▸ <tspan fill="#39ff88">NOMINAL</tspan>
+        <animate attributeName="opacity" values="1;0.4;1" dur="2.4s" repeatCount="indefinite"/>
+      </text>
+    </g>
+
+    <!-- vertical scan line -->
+    <rect x="0" y="-60" width="1200" height="60" fill="url(#scan)">
+      <animate attributeName="y" values="-60;340" dur="5s" repeatCount="indefinite"/>
+    </rect>
+
+    <!-- corner brackets -->
+    <g fill="none" stroke="#00e5ff" stroke-width="2.5" stroke-opacity="0.8">
+      <path d="M18 48 V18 H48"/>
+      <path d="M1152 18 H1182 V48"/>
+      <path d="M18 292 V322 H48"/>
+      <path d="M1152 322 H1182 V292"/>
+    </g>
+  </g>
+  <rect x="0.75" y="0.75" width="1198.5" height="338.5" rx="18" fill="none" stroke="#00e5ff" stroke-opacity="0.35" stroke-width="1.5"/>
+</svg>
